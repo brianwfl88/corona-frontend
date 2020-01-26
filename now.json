@@ -1,5 +1,10 @@
 {
     "env": {
       "VUE_APP_API_URL": "@api_url"
+    },
+    "build": {
+        "env": {
+            "VUE_APP_API_URL": "@api_url"
+        }
     }
 }
