@@ -1,15 +1,20 @@
 <template>
   <div>
     <div class="container">
-      <Search class="mt-4 mb-8" />
+      <LocationSelector v-model="country" />
+      
       <div class="flex flex-wrap -mx-2">
-        
         <div class="w-full md:w-2/3 px-2">
-          <TrendingNews></TrendingNews>
+          <Search class="mt-4 mb-8" />
+          <TrendingNews :country="country"></TrendingNews>
         </div>
         <div class="w-full md:w-1/3 px-2">
-          <div class="mb-4">
-            <RecentNews />
+          <div class="mt-4 mb-4">
+            <HealthcareInstitutions :country="country.code"/>
+          </div>
+
+          <div class="mt-4 mb-4">
+            <!-- <RecentNews :country="country" /> -->
           </div>
 
           <!-- hide for now
@@ -22,9 +27,11 @@
 </template>
 <script>
 // import NotifyCard from "../components/NotifyCard";
-import RecentNews from "../components/RecentNews";
+//import RecentNews from "../components/RecentNews";
 import Search from "../components/Search";
 import TrendingNews from './Home/TrendingNews';
+import LocationSelector from '../components/LocationSelector';
+import HealthcareInstitutions from "../components/HealthcareInstitutions"
 
 export default {
   metaInfo: {
@@ -32,12 +39,19 @@ export default {
   },
   components: {
     // NotifyCard,
-    RecentNews,
+    //RecentNews,
     Search,
-    TrendingNews
+    TrendingNews,
+    LocationSelector,
+    HealthcareInstitutions
   },
   mounted() {
 
+  },
+  data: function(){
+    return {
+      country: {},
+    }
   },
 };
 </script>

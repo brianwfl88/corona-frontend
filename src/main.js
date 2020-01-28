@@ -4,7 +4,9 @@ import router from "./router";
 import Sticky from 'vue-sticky-directive';
 import VueGtag from "vue-gtag";
 import VueMeta from 'vue-meta'
+import VueLazyload from 'vue-lazyload';
 import { GTM_ID } from './config';
+import LazyLoadSpinner from '../public/lazy-load-spinner.gif';
 
 Vue.config.productionTip = false
 
@@ -17,8 +19,17 @@ Vue.use(VueMeta, {
 Vue.use(VueGtag, {
   config: { id: GTM_ID }
 }, router);
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: LazyLoadSpinner,
+  loading: LazyLoadSpinner,
+  attempt: 1,
+  lazyComponent: true
+})
 
 import "./assets/css/main.css";
+import "flag-icon-css/css/flag-icon.min.css"
+import "@fortawesome/fontawesome-free/css/all.min.css"
 
 new Vue({
   router,
